@@ -70,6 +70,82 @@
             </objects>
             <point key="canvasLocation" x="1079.2" y="89.505247376311857"/>
         </scene>
+        <!--Search View Controller-->
+        <scene sceneID="s2w-Kc-iOV">
+            <objects>
+                <viewController id="dDB-q4-9gE" customClass="SearchViewController" customModule="CarFinderDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FLi-jS-Sva">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1oH-6T-9kJ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="492"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJo-8h-i2R">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="startDateButtonTapped:" destination="dDB-q4-9gE" eventType="touchUpInside" id="Kp7-qz-Oex"/>
+                                        </connections>
+                                    </button>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Vle-V9-rrO">
+                                        <rect key="frame" x="0.0" y="30" width="375" height="216"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="560838270.09590697">
+                                            <!--2018-10-10 04:24:30 +0000-->
+                                        </date>
+                                        <connections>
+                                            <action selector="startDateChanged:" destination="dDB-q4-9gE" eventType="valueChanged" id="Dee-Pv-CqS"/>
+                                        </connections>
+                                    </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0s-wX-QDK">
+                                        <rect key="frame" x="0.0" y="246" width="375" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="endDateButtonTapped:" destination="dDB-q4-9gE" eventType="touchUpInside" id="6JF-Dt-4ro"/>
+                                        </connections>
+                                    </button>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="3DC-Wt-jTh">
+                                        <rect key="frame" x="0.0" y="276" width="375" height="216"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="560838270.09590697">
+                                            <!--2018-10-10 04:24:30 +0000-->
+                                        </date>
+                                        <connections>
+                                            <action selector="endDateChanged:" destination="dDB-q4-9gE" eventType="valueChanged" id="NVt-6n-CsZ"/>
+                                        </connections>
+                                    </datePicker>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPV-NO-P8e">
+                                <rect key="frame" x="164.5" y="617" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="ofC-mo-jBn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MPV-NO-P8e" firstAttribute="centerX" secondItem="f6G-qV-yos" secondAttribute="centerX" id="9FE-jn-Lcb"/>
+                            <constraint firstItem="f6G-qV-yos" firstAttribute="trailing" secondItem="1oH-6T-9kJ" secondAttribute="trailing" id="9Hv-pc-iD6"/>
+                            <constraint firstItem="f6G-qV-yos" firstAttribute="bottom" secondItem="MPV-NO-P8e" secondAttribute="bottom" constant="20" id="P3B-xx-EHV"/>
+                            <constraint firstItem="1oH-6T-9kJ" firstAttribute="top" secondItem="f6G-qV-yos" secondAttribute="top" id="Pfz-36-4lX"/>
+                            <constraint firstItem="1oH-6T-9kJ" firstAttribute="leading" secondItem="f6G-qV-yos" secondAttribute="leading" id="U4F-ax-HRl"/>
+                            <constraint firstItem="MPV-NO-P8e" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3DC-Wt-jTh" secondAttribute="bottom" constant="8" id="fcP-gC-Zb5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="f6G-qV-yos"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Sok-KL-RtP"/>
+                    <connections>
+                        <outlet property="endDateButton" destination="e0s-wX-QDK" id="t45-N4-Zf5"/>
+                        <outlet property="endDatePicker" destination="3DC-Wt-jTh" id="aEy-GS-ZNn"/>
+                        <outlet property="startDateButton" destination="IJo-8h-i2R" id="tnn-2I-ACQ"/>
+                        <outlet property="startDatePicker" destination="Vle-V9-rrO" id="np1-Td-7M1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AI6-3J-V49" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="188" y="89.505247376311857"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ADE-9Q-hjt">
             <objects>
@@ -81,12 +157,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rjg-UK-tla"/>
+                        <segue destination="dDB-q4-9gE" kind="relationship" relationship="rootViewController" id="G7J-J4-1eZ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VHC-n9-chF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="89.505247376311857"/>
+            <point key="canvasLocation" x="-646" y="90"/>
         </scene>
     </scenes>
 </document>

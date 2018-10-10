@@ -9,6 +9,8 @@
 import UIKit
 
 class CarSearchResultsViewController: UIViewController {
+  var startDate = Date()
+  var endDate = Date()
   var cars: [CarInfo] = []
   
   @IBOutlet weak var tableView: UITableView!

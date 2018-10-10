@@ -15,6 +15,7 @@
 		338BCC17216D950A007A4906 /* CarFinderDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC16216D950A007A4906 /* CarFinderDemoTests.swift */; };
 		338BCC22216D950A007A4906 /* CarFinderDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC21216D950A007A4906 /* CarFinderDemoUITests.swift */; };
 		338BCC30216DA338007A4906 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC2F216DA338007A4906 /* Models.swift */; };
+		338BCC32216DB749007A4906 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC31216DB749007A4906 /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		338BCC21216D950A007A4906 /* CarFinderDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarFinderDemoUITests.swift; sourceTree = "<group>"; };
 		338BCC23216D950A007A4906 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		338BCC2F216DA338007A4906 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		338BCC31216DB749007A4906 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */,
 				338BCC2F216DA338007A4906 /* Models.swift */,
 				338BCC05216D9509007A4906 /* Main.storyboard */,
+				338BCC31216DB749007A4906 /* SearchViewController.swift */,
 				338BCC08216D950A007A4906 /* Assets.xcassets */,
 				338BCC0A216D950A007A4906 /* LaunchScreen.storyboard */,
 				338BCC0D216D950A007A4906 /* Info.plist */,
@@ -261,6 +264,7 @@
 			files = (
 				338BCC30216DA338007A4906 /* Models.swift in Sources */,
 				338BCC04216D9509007A4906 /* CarSearchResultsViewController.swift in Sources */,
+				338BCC32216DB749007A4906 /* SearchViewController.swift in Sources */,
 				338BCC02216D9509007A4906 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
