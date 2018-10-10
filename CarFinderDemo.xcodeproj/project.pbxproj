@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		338BCC02216D9509007A4906 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC01216D9509007A4906 /* AppDelegate.swift */; };
-		338BCC04216D9509007A4906 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC03216D9509007A4906 /* ViewController.swift */; };
+		338BCC04216D9509007A4906 /* CarSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */; };
 		338BCC07216D9509007A4906 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338BCC05216D9509007A4906 /* Main.storyboard */; };
 		338BCC09216D950A007A4906 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338BCC08216D950A007A4906 /* Assets.xcassets */; };
 		338BCC0C216D950A007A4906 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338BCC0A216D950A007A4906 /* LaunchScreen.storyboard */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		338BCBFE216D9509007A4906 /* CarFinderDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarFinderDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338BCC01216D9509007A4906 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		338BCC03216D9509007A4906 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSearchResultsViewController.swift; sourceTree = "<group>"; };
 		338BCC06216D9509007A4906 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		338BCC08216D950A007A4906 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		338BCC0B216D950A007A4906 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				338BCC01216D9509007A4906 /* AppDelegate.swift */,
-				338BCC03216D9509007A4906 /* ViewController.swift */,
+				338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */,
 				338BCC2F216DA338007A4906 /* Models.swift */,
 				338BCC05216D9509007A4906 /* Main.storyboard */,
 				338BCC08216D950A007A4906 /* Assets.xcassets */,
@@ -260,7 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				338BCC30216DA338007A4906 /* Models.swift in Sources */,
-				338BCC04216D9509007A4906 /* ViewController.swift in Sources */,
+				338BCC04216D9509007A4906 /* CarSearchResultsViewController.swift in Sources */,
 				338BCC02216D9509007A4906 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

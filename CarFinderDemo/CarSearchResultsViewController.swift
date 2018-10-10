@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CarSearchResultsViewController.swift
 //  CarFinderDemo
 //
 //  Created by Owen Thomas on 10/9/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CarSearchResultsViewController: UIViewController {
   var cars: [CarInfo] = []
   
   @IBOutlet weak var tableView: UITableView!
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
   }
 }
 
-extension ViewController: UITableViewDataSource {
+extension CarSearchResultsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return cars.count
   }
