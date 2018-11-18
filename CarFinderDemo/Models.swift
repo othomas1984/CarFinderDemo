@@ -13,7 +13,7 @@ struct CarSearchResults: Decodable {
   var cars: [CarInfo] {
     return results.flatMap { result in
       result.cars.map { apiCar in
-        CarInfo(rates: apiCar.rates, acrissCode: apiCar.vehicleInfo.acrissCode, transmission: apiCar.vehicleInfo.transmission, fuel: apiCar.vehicleInfo.fuel, airConditioning: apiCar.vehicleInfo.airConditioning, category: apiCar.vehicleInfo.category, type: apiCar.vehicleInfo.type, providerName: result.provider.companyName, estimatedTotal: apiCar.estimatedTotal, image: apiCar.image)
+        CarInfo(rates: apiCar.rates, acrissCode: apiCar.vehicleInfo.acrissCode, transmission: apiCar.vehicleInfo.transmission, fuel: apiCar.vehicleInfo.fuel, airConditioning: apiCar.vehicleInfo.airConditioning, category: apiCar.vehicleInfo.category, type: apiCar.vehicleInfo.type, providerName: result.provider.companyName, estimatedTotal: apiCar.estimatedTotal, image: apiCar.image, address: result.address)
       }
     }
   }
@@ -66,6 +66,7 @@ struct CarInfo {
   var providerName: String
   var estimatedTotal: Cost?
   var image: Image?
+  var address: Address
 }
 
 struct VehicleInfo: Decodable {
