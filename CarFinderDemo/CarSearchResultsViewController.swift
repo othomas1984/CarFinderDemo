@@ -10,8 +10,11 @@ import UIKit
 
 class CarSearchResultsViewController: UIViewController {
   var keyService: KeyService!
-  var startDate = Date()
-  var endDate = Date()
+  var startDate: Date!
+  var endDate: Date!
+  var lat: String!
+  var long: String!
+  
   var cars: [CarInfo] = []
   var sortedCars: [CarInfo] {
     get {
@@ -31,6 +34,7 @@ class CarSearchResultsViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   override func viewDidLoad() {
     super.viewDidLoad()
+    title = "Searching..."
     keyService = KeyService()
     guard var urlComponents = URLComponents(string: "https://api.sandbox.amadeus.com/v1.2/cars/search-circle") else {
       print("URL Error")
@@ -38,7 +42,7 @@ class CarSearchResultsViewController: UIViewController {
       return
     }
     let formatter = DateFormatter()
-    formatter.dateFormat = "YYYY-MM-dd"
+    formatter.dateFormat = "yyyy-MM-dd"
     let start = formatter.string(from: startDate)
     let end = formatter.string(from: endDate)
     let apiKey: String
@@ -50,8 +54,8 @@ class CarSearchResultsViewController: UIViewController {
     }
     urlComponents.queryItems = [
       URLQueryItem(name: "apikey", value: apiKey),
-      URLQueryItem(name: "latitude", value: "34.0522"),
-      URLQueryItem(name: "longitude", value: "-118.2437"),
+      URLQueryItem(name: "latitude", value: lat),
+      URLQueryItem(name: "longitude", value: long),
       URLQueryItem(name: "radius", value: "40"),
       URLQueryItem(name: "pick_up", value: start),
       URLQueryItem(name: "drop_off", value: end),
@@ -74,11 +78,17 @@ class CarSearchResultsViewController: UIViewController {
           print(message)
         }
         #warning("Handle error")
+        DispatchQueue.main.async {
+          self.title = "0 Results"
+        }
         return
       }
       guard let data = data, error == nil else {
         print("Error fetching data: \(error?.localizedDescription ?? "Unknown Error")")
         #warning("Handle error")
+        DispatchQueue.main.async {
+          self.title = "0 Results"
+        }
         return
       }
       let decoder = JSONDecoder()
@@ -86,11 +96,14 @@ class CarSearchResultsViewController: UIViewController {
       guard let result = try? decoder.decode(CarSearchResults.self, from: data) else {
         print("Error decoding search results")
         #warning("Handle error")
+        DispatchQueue.main.async {
+          self.title = "0 Results"
+        }
         return
       }
       self.cars = result.cars
-      print("Cars found: \(self.cars.count)")
       DispatchQueue.main.async {
+        self.title = "\(self.cars.count) Results"
         self.tableView.reloadData()
       }
     }
