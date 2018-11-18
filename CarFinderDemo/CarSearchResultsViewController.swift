@@ -9,6 +9,7 @@
 import UIKit
 
 class CarSearchResultsViewController: UIViewController {
+  var keyService: KeyService!
   var startDate = Date()
   var endDate = Date()
   var cars: [CarInfo] = []
@@ -30,6 +31,7 @@ class CarSearchResultsViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   override func viewDidLoad() {
     super.viewDidLoad()
+    keyService = KeyService()
     guard var urlComponents = URLComponents(string: "https://api.sandbox.amadeus.com/v1.2/cars/search-circle") else {
       print("URL Error")
       #warning("Handle error")
@@ -39,9 +41,15 @@ class CarSearchResultsViewController: UIViewController {
     formatter.dateFormat = "YYYY-MM-dd"
     let start = formatter.string(from: startDate)
     let end = formatter.string(from: endDate)
-      
+    let apiKey: String
+    do {
+      apiKey = try keyService.key(forName: "amadeusAPIKey")
+    } catch {
+      apiKey = "Unknown Key"
+      print(error.localizedDescription)
+    }
     urlComponents.queryItems = [
-      URLQueryItem(name: "apikey", value: "o7cZmYQRVWpoWfEgB7xGUgVj3F0DQRNw"),
+      URLQueryItem(name: "apikey", value: apiKey),
       URLQueryItem(name: "latitude", value: "34.0522"),
       URLQueryItem(name: "longitude", value: "-118.2437"),
       URLQueryItem(name: "radius", value: "40"),

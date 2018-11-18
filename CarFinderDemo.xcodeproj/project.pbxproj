@@ -16,6 +16,8 @@
 		338BCC22216D950A007A4906 /* CarFinderDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC21216D950A007A4906 /* CarFinderDemoUITests.swift */; };
 		338BCC30216DA338007A4906 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC2F216DA338007A4906 /* Models.swift */; };
 		338BCC32216DB749007A4906 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC31216DB749007A4906 /* SearchViewController.swift */; };
+		33A0FD8421A205A7000AEB21 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A0FD8321A205A7000AEB21 /* Keys.swift */; };
+		33A0FD8621A206E2000AEB21 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33A0FD8521A206E2000AEB21 /* Keys.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		338BCC23216D950A007A4906 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		338BCC2F216DA338007A4906 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		338BCC31216DB749007A4906 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		33A0FD8321A205A7000AEB21 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		33A0FD8521A206E2000AEB21 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 				338BCC01216D9509007A4906 /* AppDelegate.swift */,
 				338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */,
 				338BCC2F216DA338007A4906 /* Models.swift */,
+				33A0FD8321A205A7000AEB21 /* Keys.swift */,
+				33A0FD8521A206E2000AEB21 /* Keys.plist */,
 				338BCC05216D9509007A4906 /* Main.storyboard */,
 				338BCC31216DB749007A4906 /* SearchViewController.swift */,
 				338BCC08216D950A007A4906 /* Assets.xcassets */,
@@ -235,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33A0FD8621A206E2000AEB21 /* Keys.plist in Resources */,
 				338BCC0C216D950A007A4906 /* LaunchScreen.storyboard in Resources */,
 				338BCC09216D950A007A4906 /* Assets.xcassets in Resources */,
 				338BCC07216D9509007A4906 /* Main.storyboard in Resources */,
@@ -266,6 +273,7 @@
 				338BCC04216D9509007A4906 /* CarSearchResultsViewController.swift in Sources */,
 				338BCC32216DB749007A4906 /* SearchViewController.swift in Sources */,
 				338BCC02216D9509007A4906 /* AppDelegate.swift in Sources */,
+				33A0FD8421A205A7000AEB21 /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
