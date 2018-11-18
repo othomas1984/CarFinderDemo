@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import CoreLocation
 
 class SearchViewController: UIViewController {
+  var locationService: LocationService!
+  
   lazy var formatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .short
+    formatter.dateStyle = .medium
     return formatter
   }()
   var startDate: Date = Date() {
@@ -26,7 +29,9 @@ class SearchViewController: UIViewController {
       endDateButton.setTitle(formatter.string(from: endDate), for: .normal)
     }
   }
+  var location: CLPlacemark?
   
+  @IBOutlet weak var addressTextField: UITextField!
   @IBOutlet weak var startDateButton: UIButton!
   @IBOutlet weak var startDatePicker: UIDatePicker!
   @IBOutlet weak var endDateButton: UIButton!
@@ -34,6 +39,7 @@ class SearchViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    locationService = LocationService()
     setupUI()
   }
   
@@ -42,6 +48,7 @@ class SearchViewController: UIViewController {
       animate(picker: endDatePicker, hide: true)
     }
     animate(picker: startDatePicker, hide: !startDatePicker.isHidden)
+    addressTextField.resignFirstResponder()
   }
   
   @IBAction func endDateButtonTapped(_ sender: Any) {
@@ -49,6 +56,7 @@ class SearchViewController: UIViewController {
       animate(picker: startDatePicker, hide: true)
     }
     animate(picker: endDatePicker, hide: !endDatePicker.isHidden)
+    addressTextField.resignFirstResponder()
   }
   
   @IBAction func startDateChanged(_ sender: UIDatePicker) {
@@ -58,10 +66,18 @@ class SearchViewController: UIViewController {
     endDate = sender.date
   }
   
+  override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+    return location?.location != nil
+  }
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let resultsVC = segue.destination as? CarSearchResultsViewController else { return }
     resultsVC.startDate = startDate
     resultsVC.endDate = endDate
+    
+    resultsVC.lat = String(describing: location?.location?.coordinate.latitude ?? 0)
+    resultsVC.long = String(describing: location?.location?.coordinate.longitude ?? 0)
+    
   }
 
   private func animate(picker: UIDatePicker, hide: Bool) {
@@ -79,11 +95,38 @@ class SearchViewController: UIViewController {
   }
   
   private func setupUI() {
+    title = "Rentals Near You"
     startDatePicker.isHidden = true
     startDatePicker.minimumDate = Date()
     startDatePicker.maximumDate = Date().addingTimeInterval(60*60*24*359)
     endDatePicker.maximumDate = Date().addingTimeInterval(60*60*24*360)
     startDate = Date()
     endDatePicker.isHidden = true
+    addressTextField.delegate = self
+  }
+}
+
+extension SearchViewController: UITextFieldDelegate {
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    if let oldText = textField.text {
+      let newText = (oldText as NSString).replacingCharacters(in: range, with: string)
+      locationService.location(forAddress: newText) { (place, error) in
+        if let error = error {
+          print(error.localizedDescription)
+          #warning("Deal with error")
+        } else if let place = place {
+          self.location = place
+        }
+      }
+    }
+    return true
+  }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    if shouldPerformSegue(withIdentifier: "showSearchResults", sender: nil) {
+      performSegue(withIdentifier: "showSearchResults", sender: nil)
+      textField.resignFirstResponder()
+    }
+    return true
   }
 }
