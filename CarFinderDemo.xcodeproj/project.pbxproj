@@ -18,6 +18,7 @@
 		338BCC32216DB749007A4906 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC31216DB749007A4906 /* SearchViewController.swift */; };
 		33A0FD8421A205A7000AEB21 /* KeyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A0FD8321A205A7000AEB21 /* KeyService.swift */; };
 		33A0FD8621A206E2000AEB21 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33A0FD8521A206E2000AEB21 /* Keys.plist */; };
+		33A0FD8821A21B21000AEB21 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A0FD8721A21B21000AEB21 /* LocationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		338BCC31216DB749007A4906 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		33A0FD8321A205A7000AEB21 /* KeyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyService.swift; sourceTree = "<group>"; };
 		33A0FD8521A206E2000AEB21 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		33A0FD8721A21B21000AEB21 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */,
 				338BCC2F216DA338007A4906 /* Models.swift */,
 				33A0FD8321A205A7000AEB21 /* KeyService.swift */,
+				33A0FD8721A21B21000AEB21 /* LocationService.swift */,
 				33A0FD8521A206E2000AEB21 /* Keys.plist */,
 				338BCC05216D9509007A4906 /* Main.storyboard */,
 				338BCC31216DB749007A4906 /* SearchViewController.swift */,
@@ -273,6 +276,7 @@
 				338BCC04216D9509007A4906 /* CarSearchResultsViewController.swift in Sources */,
 				338BCC32216DB749007A4906 /* SearchViewController.swift in Sources */,
 				338BCC02216D9509007A4906 /* AppDelegate.swift in Sources */,
+				33A0FD8821A21B21000AEB21 /* LocationService.swift in Sources */,
 				33A0FD8421A205A7000AEB21 /* KeyService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
