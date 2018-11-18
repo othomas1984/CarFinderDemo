@@ -81,6 +81,8 @@ class SearchViewController: UIViewController {
   private func setupUI() {
     startDatePicker.isHidden = true
     startDatePicker.minimumDate = Date()
+    startDatePicker.maximumDate = Date().addingTimeInterval(60*60*24*359)
+    endDatePicker.maximumDate = Date().addingTimeInterval(60*60*24*360)
     startDate = Date()
     endDatePicker.isHidden = true
   }
