@@ -19,7 +19,7 @@ class CarSearchResultsViewController: UIViewController {
         .sorted {
           let providerEqual = $0.providerName == $1.providerName
           let categoryEqual = $0.category == $1.category
-          let amountAscending = Double($0.estimatedTotal.amount) ?? 0 < Double($1.estimatedTotal.amount) ?? 0
+          let amountAscending = Double($0.estimatedTotal?.amount ?? "0") ?? 0 < Double($1.estimatedTotal?.amount ?? "0") ?? 0
           let providerAscending = $0.providerName < $1.providerName
           let categoryAscending = $0.category < $1.category
           return !providerEqual ? providerAscending :
@@ -101,7 +101,11 @@ extension CarSearchResultsViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath)
     let car = sortedCars[indexPath.row]
     cell.textLabel?.text = car.providerName + ": " + car.category
-    cell.detailTextLabel?.text = car.estimatedTotal.amount + " " + car.estimatedTotal.currency
+    if let estimate = car.estimatedTotal {
+      cell.detailTextLabel?.text = estimate.amount + " " + estimate.currency
+    } else {
+      cell.detailTextLabel?.text = "Tap for Price"
+    }
     return cell
   }
 }
