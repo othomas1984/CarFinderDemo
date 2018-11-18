@@ -67,6 +67,12 @@ class CarSearchResultsViewController: UIViewController {
       guard let statusCode = (response as? HTTPURLResponse)?.statusCode else { return }
       guard statusCode >= 200, statusCode < 300 else {
         print("Network Error: HTTP Code \(statusCode)")
+        if let data = data,
+          let error = try? JSONSerialization.jsonObject(with: data, options: []),
+          let errorDict = error as? [String: Any],
+          let message = errorDict["message"] as? String {
+          print(message)
+        }
         #warning("Handle error")
         return
       }
