@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CarSearchResultsViewController: UIViewController {
   var keyService: KeyService!
+  var locationService: LocationService!
   var startDate: Date!
   var endDate: Date!
-  var lat: String!
-  var long: String!
+  var location: CLLocation!
   
   var cars: [CarInfo] = []
   var sortedCars: [CarInfo] {
@@ -36,6 +37,7 @@ class CarSearchResultsViewController: UIViewController {
     super.viewDidLoad()
     title = "Searching..."
     keyService = KeyService()
+    locationService = LocationService()
     guard var urlComponents = URLComponents(string: "https://api.sandbox.amadeus.com/v1.2/cars/search-circle") else {
       print("URL Error")
       #warning("Handle error")
@@ -54,8 +56,8 @@ class CarSearchResultsViewController: UIViewController {
     }
     urlComponents.queryItems = [
       URLQueryItem(name: "apikey", value: apiKey),
-      URLQueryItem(name: "latitude", value: lat),
-      URLQueryItem(name: "longitude", value: long),
+      URLQueryItem(name: "latitude", value: String(describing: location.coordinate.latitude)),
+      URLQueryItem(name: "longitude", value: String(describing: location.coordinate.longitude)),
       URLQueryItem(name: "radius", value: "40"),
       URLQueryItem(name: "pick_up", value: start),
       URLQueryItem(name: "drop_off", value: end),
@@ -119,7 +121,9 @@ extension CarSearchResultsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath)
     let car = sortedCars[indexPath.row]
-    cell.textLabel?.text = car.providerName + ": " + car.category
+    let miles = locationService.milesBetween(pointOne: CLLocation(latitude: car.location.latitude, longitude: car.location.longitude), pointTwo: location)
+    let milesString = " (\(round(miles * 100) / 100)m)"
+    cell.textLabel?.text = car.providerName + ": " + car.category + milesString
     if let estimate = car.estimatedTotal {
       cell.detailTextLabel?.text = estimate.amount + " " + estimate.currency
     } else {

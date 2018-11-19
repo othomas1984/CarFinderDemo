@@ -25,9 +25,9 @@ class LocationService: NSObject {
     return manager
   }()
   
-  let delegate: LocationServiceDelegate
+  let delegate: LocationServiceDelegate?
   
-  init(delegate: LocationServiceDelegate) {
+  init(delegate: LocationServiceDelegate? = nil) {
     self.delegate = delegate
   }
   
@@ -40,7 +40,7 @@ class LocationService: NSObject {
     case .authorizedAlways, .authorizedWhenInUse:
       locationManager.requestLocation()
     case .denied, .restricted:
-      delegate.locationUpdateFailed()
+      delegate?.locationUpdateFailed()
     case .notDetermined:
       locationManager.requestWhenInUseAuthorization()
     }
@@ -64,20 +64,20 @@ class LocationService: NSObject {
 extension LocationService: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     guard let location = locations.first else {
-      delegate.locationUpdateFailed()
+      delegate?.locationUpdateFailed()
       return
     }
     geoCoder.reverseGeocodeLocation(location) { (places, error) in
       guard error == nil, let place = places?.first else {
-        self.delegate.locationUpdateFailed()
+        self.delegate?.locationUpdateFailed()
         return
       }
-      self.delegate.locationUpdated(place)
+      self.delegate?.locationUpdated(place)
     }
   }
   
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-    delegate.locationUpdateFailed()
+    delegate?.locationUpdateFailed()
   }
   
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -87,7 +87,7 @@ extension LocationService: CLLocationManagerDelegate {
     case .notDetermined:
       break
     default:
-      delegate.locationUpdateFailed()
+      delegate?.locationUpdateFailed()
     }
   }
 }

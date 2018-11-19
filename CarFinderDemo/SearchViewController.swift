@@ -80,10 +80,9 @@ class SearchViewController: UIViewController {
     guard let resultsVC = segue.destination as? CarSearchResultsViewController else { return }
     resultsVC.startDate = startDate
     resultsVC.endDate = endDate
-    
-    resultsVC.lat = String(describing: location?.location?.coordinate.latitude ?? 0)
-    resultsVC.long = String(describing: location?.location?.coordinate.longitude ?? 0)
-    
+    if let location = location {
+      resultsVC.location = location.location
+    }
   }
 
   private func animate(picker: UIDatePicker, hide: Bool) {
