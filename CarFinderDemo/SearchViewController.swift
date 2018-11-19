@@ -38,8 +38,9 @@ class SearchViewController: UIViewController {
   @IBOutlet weak var endDatePicker: UIDatePicker!
   @IBOutlet weak var spinner: UIActivityIndicatorView!
   @IBAction func useCurrentLocationTapped(_ sender: Any) {
-    locationService.requestCurrentLocation()
     spinner.startAnimating()
+    addressTextField.resignFirstResponder()
+    locationService.requestCurrentLocation()
   }
   
   override func viewDidLoad() {
@@ -146,11 +147,5 @@ extension SearchViewController: LocationServiceDelegate {
   func locationUpdateFailed() {
     self.location = nil
     spinner.stopAnimating()
-  }
-  
-  func locationAccess(accessible: Bool) {
-    if accessible {
-      locationService.currentLocation()
-    }
-  }
+  }  
 }

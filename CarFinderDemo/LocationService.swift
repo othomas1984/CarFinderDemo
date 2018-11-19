@@ -11,7 +11,6 @@ import CoreLocation
 protocol LocationServiceDelegate {
   func locationUpdated(_ location: CLPlacemark)
   func locationUpdateFailed()
-  func locationAccess(accessible: Bool)
 }
 
 class LocationService: NSObject {
@@ -37,15 +36,14 @@ class LocationService: NSObject {
   }
   
   func requestCurrentLocation() {
-    if case CLLocationManager.authorizationStatus() = CLAuthorizationStatus.authorizedWhenInUse {
+    switch CLLocationManager.authorizationStatus() {
+    case .authorizedAlways, .authorizedWhenInUse:
       locationManager.requestLocation()
-    } else {
+    case .denied, .restricted:
+      delegate.locationUpdateFailed()
+    case .notDetermined:
       locationManager.requestWhenInUseAuthorization()
     }
-  }
-  
-  func currentLocation() {
-    locationManager.requestLocation()
   }
   
   func location(forAddress address: String, completion: @escaping ((CLPlacemark?, LocationServiceError?) -> Void)) {
@@ -85,9 +83,11 @@ extension LocationService: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
     switch status {
     case .authorizedAlways, .authorizedWhenInUse:
-      delegate.locationAccess(accessible: true)
+      locationManager.requestLocation()
+    case .notDetermined:
+      break
     default:
-      delegate.locationAccess(accessible: false)
+      delegate.locationUpdateFailed()
     }
   }
 }
