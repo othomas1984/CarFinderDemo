@@ -36,10 +36,15 @@ class SearchViewController: UIViewController {
   @IBOutlet weak var startDatePicker: UIDatePicker!
   @IBOutlet weak var endDateButton: UIButton!
   @IBOutlet weak var endDatePicker: UIDatePicker!
+  @IBOutlet weak var spinner: UIActivityIndicatorView!
+  @IBAction func useCurrentLocationTapped(_ sender: Any) {
+    locationService.requestCurrentLocation()
+    spinner.startAnimating()
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    locationService = LocationService()
+    locationService = LocationService(delegate: self)
     setupUI()
   }
   
@@ -67,7 +72,7 @@ class SearchViewController: UIViewController {
   }
   
   override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-    return location?.location != nil
+    return location != nil
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -128,5 +133,24 @@ extension SearchViewController: UITextFieldDelegate {
       textField.resignFirstResponder()
     }
     return true
+  }
+}
+
+extension SearchViewController: LocationServiceDelegate {
+  func locationUpdated(_ location: CLPlacemark) {
+    self.location = location
+    addressTextField.text = location.address
+    spinner.stopAnimating()
+  }
+  
+  func locationUpdateFailed() {
+    self.location = nil
+    spinner.stopAnimating()
+  }
+  
+  func locationAccess(accessible: Bool) {
+    if accessible {
+      locationService.currentLocation()
+    }
   }
 }
