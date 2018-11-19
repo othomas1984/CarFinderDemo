@@ -51,18 +51,32 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="2q4-3Q-9IY"/>
                                 </connections>
                             </tableView>
+                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOy-TX-kRz">
+                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="jOy-TX-kRz" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3nG-IP-hbL"/>
+                            <constraint firstItem="jOy-TX-kRz" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="64b-5N-Rtu"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bPJ-G0-xFM" secondAttribute="trailing" id="A1H-c0-JA6"/>
                             <constraint firstItem="bPJ-G0-xFM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KpH-o3-YUQ"/>
                             <constraint firstAttribute="bottom" secondItem="bPJ-G0-xFM" secondAttribute="bottom" id="X8y-rX-XLL"/>
                             <constraint firstItem="bPJ-G0-xFM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bYV-yh-N4p"/>
+                            <constraint firstItem="jOy-TX-kRz" firstAttribute="bottom" secondItem="bPJ-G0-xFM" secondAttribute="bottom" id="bpk-A4-duu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="wSL-2t-TRW"/>
+                    <navigationItem key="navigationItem" id="wSL-2t-TRW">
+                        <barButtonItem key="rightBarButtonItem" title="Sort" id="pAC-2n-9c7">
+                            <connections>
+                                <action selector="sortButtonTapped:" destination="BYZ-38-t0r" id="rcs-dz-rq4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="sortPickerView" destination="jOy-TX-kRz" id="Qgx-nT-IFt"/>
                         <outlet property="tableView" destination="bPJ-G0-xFM" id="9Eh-ca-M6l"/>
                     </connections>
                 </viewController>

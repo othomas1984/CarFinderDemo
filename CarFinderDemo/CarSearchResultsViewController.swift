@@ -33,10 +33,13 @@ class CarSearchResultsViewController: UIViewController {
   var cars: [CarInfo] = []
   
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var sortPickerView: UIPickerView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Searching..."
+    sortPickerView.dataSource = self
+    sortPickerView.delegate = self
     keyService = KeyService()
     locationService = LocationService()
     guard var urlComponents = URLComponents(string: "https://api.sandbox.amadeus.com/v1.2/cars/search-circle") else {
@@ -114,6 +117,9 @@ class CarSearchResultsViewController: UIViewController {
     task.resume()
   }
   
+  @IBAction func sortButtonTapped(_ sender: Any) {
+    sortPickerView.isHidden = !sortPickerView.isHidden
+  }
   func sortCars(by sortType: CarSort, ascending: Bool) {
     cars = cars
       .sorted {
@@ -157,5 +163,30 @@ extension CarSearchResultsViewController: UITableViewDataSource {
       cell.detailTextLabel?.text = "Tap for Price"
     }
     return cell
+  }
+}
+
+extension CarSearchResultsViewController: UIPickerViewDataSource {
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 2
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return component == 0 ? 3 : 2
+  }
+}
+
+extension CarSearchResultsViewController: UIPickerViewDelegate {
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    return [["Company", "Distance", "Price"], ["Ascending", "Descending"]][component][row]
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    if component == 0 {
+      self.sortBy = [CarSort.company, CarSort.distance, CarSort.price][row]
+    } else {
+      self.sortAscending = row == 0
+    }
+    tableView.reloadData()
   }
 }
