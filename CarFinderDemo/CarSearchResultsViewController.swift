@@ -10,29 +10,30 @@ import UIKit
 import CoreLocation
 
 class CarSearchResultsViewController: UIViewController {
+  enum CarSort {
+    case company, price, distance
+  }
+  
   var keyService: KeyService!
   var locationService: LocationService!
   var startDate: Date!
   var endDate: Date!
   var location: CLLocation!
-  
-  var cars: [CarInfo] = []
-  var sortedCars: [CarInfo] {
-    get {
-      return cars
-        .sorted {
-          let providerEqual = $0.providerName == $1.providerName
-          let categoryEqual = $0.category == $1.category
-          let amountAscending = Double($0.estimatedTotal?.amount ?? "0") ?? 0 < Double($1.estimatedTotal?.amount ?? "0") ?? 0
-          let providerAscending = $0.providerName < $1.providerName
-          let categoryAscending = $0.category < $1.category
-          return !providerEqual ? providerAscending :
-            !categoryEqual ? categoryAscending : amountAscending
-      }
+  var sortBy: CarSort = .company {
+    didSet {
+      sortCars(by: sortBy, ascending: sortAscending)
+    }
+  }
+  var sortAscending: Bool = true {
+    didSet {
+      sortCars(by: sortBy, ascending: sortAscending)
     }
   }
   
+  var cars: [CarInfo] = []
+  
   @IBOutlet weak var tableView: UITableView!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Searching..."
@@ -104,6 +105,7 @@ class CarSearchResultsViewController: UIViewController {
         return
       }
       self.cars = result.cars
+      self.sortCars(by: self.sortBy, ascending: self.sortAscending)
       DispatchQueue.main.async {
         self.title = "\(self.cars.count) Results"
         self.tableView.reloadData()
@@ -111,16 +113,41 @@ class CarSearchResultsViewController: UIViewController {
     }
     task.resume()
   }
+  
+  func sortCars(by sortType: CarSort, ascending: Bool) {
+    cars = cars
+      .sorted {
+        let companyEqual = $0.providerName == $1.providerName
+        let priceEqual = Double($0.estimatedTotal?.amount ?? "0") ?? 0 == Double($1.estimatedTotal?.amount ?? "0") ?? 0
+        let priceAscending = Double($0.estimatedTotal?.amount ?? "0") ?? 0 < Double($1.estimatedTotal?.amount ?? "0") ?? 0
+        let companyAscending = $0.providerName < $1.providerName
+        let distance1 = locationService.milesBetween(pointOne: CLLocation(latitude: $0.location.latitude, longitude: $0.location.longitude), pointTwo: location)
+        let distance2 = locationService.milesBetween(pointOne: CLLocation(latitude: $1.location.latitude, longitude: $1.location.longitude), pointTwo: location)
+        let distanceAscending = distance1 < distance2
+        let distanceEqual = distance1 == distance2
+        switch sortType {
+        case .company:
+          return !companyEqual ? (ascending ? companyAscending : !companyAscending) :
+            !distanceEqual ? distanceAscending : priceAscending
+        case .price:
+          return !priceEqual ? (ascending ? priceAscending : !priceAscending) :
+            !distanceEqual ? distanceAscending : companyAscending
+        case .distance:
+          return !distanceEqual ? (ascending ? distanceAscending : !distanceAscending) :
+            !companyEqual ? companyAscending : priceAscending
+        }
+    }
+  }
 }
 
 extension CarSearchResultsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return sortedCars.count
+    return cars.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "carCell", for: indexPath)
-    let car = sortedCars[indexPath.row]
+    let car = cars[indexPath.row]
     let miles = locationService.milesBetween(pointOne: CLLocation(latitude: car.location.latitude, longitude: car.location.longitude), pointTwo: location)
     let milesString = " (\(round(miles * 100) / 100)m)"
     cell.textLabel?.text = car.providerName + ": " + car.category + milesString
