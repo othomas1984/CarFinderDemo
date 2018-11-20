@@ -4,7 +4,7 @@
 
 * Install pods if necessary (run `pod install` from the project directory).
 * Get an API key from https://sandbox.amadeus.com/.
-* Add a `Keys.plist` file to the root level of the project. Add a single entry in the plist with a key of `amadeusAPIKey`, and a String value of your key from Amadeus.
+* Add a `Keys.plist` file at `/CarFinderDemo/Keys.plist` in the project directory. Add a single entry in the plist with a key of `amadeusAPIKey`, and a String value of your key from Amadeus.
   - Note: This file is git ignored so it will not show up as a change in your repo.
 
 ## Usage
