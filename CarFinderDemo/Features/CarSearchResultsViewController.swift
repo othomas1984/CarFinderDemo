@@ -34,6 +34,7 @@ class CarSearchResultsViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var sortPickerView: UIPickerView!
+  @IBOutlet weak var sortOverlayView: UIView!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -118,7 +119,7 @@ class CarSearchResultsViewController: UIViewController {
   }
   
   @IBAction func sortButtonTapped(_ sender: Any) {
-    sortPickerView.isHidden = !sortPickerView.isHidden
+    sortOverlayView.isHidden = !sortOverlayView.isHidden
   }
   func sortCars(by sortType: CarSort, ascending: Bool) {
     cars = cars

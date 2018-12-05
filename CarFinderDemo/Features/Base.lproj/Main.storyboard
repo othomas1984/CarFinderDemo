@@ -51,20 +51,42 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="2q4-3Q-9IY"/>
                                 </connections>
                             </tableView>
-                            <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOy-TX-kRz">
-                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            </pickerView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giD-0o-dSF">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOy-TX-kRz">
+                                        <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    </pickerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8RL-jj-YoR">
+                                        <rect key="frame" x="317" y="459" width="42" height="33"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="sortButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A11-Fq-dFa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="8RL-jj-YoR" firstAttribute="top" secondItem="jOy-TX-kRz" secondAttribute="top" constant="8" id="8lh-X9-R7M"/>
+                                    <constraint firstAttribute="bottom" secondItem="jOy-TX-kRz" secondAttribute="bottom" id="H9C-Cm-ItA"/>
+                                    <constraint firstAttribute="trailing" secondItem="jOy-TX-kRz" secondAttribute="trailing" id="gRO-0U-BCQ"/>
+                                    <constraint firstItem="jOy-TX-kRz" firstAttribute="leading" secondItem="giD-0o-dSF" secondAttribute="leading" id="ol3-28-mWQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="jOy-TX-kRz" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3nG-IP-hbL"/>
-                            <constraint firstItem="jOy-TX-kRz" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="64b-5N-Rtu"/>
+                            <constraint firstItem="giD-0o-dSF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0dV-ih-aPm"/>
+                            <constraint firstAttribute="trailing" secondItem="giD-0o-dSF" secondAttribute="trailing" id="7zd-b3-qXV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bPJ-G0-xFM" secondAttribute="trailing" id="A1H-c0-JA6"/>
+                            <constraint firstItem="giD-0o-dSF" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="InV-1w-nQx"/>
                             <constraint firstItem="bPJ-G0-xFM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="KpH-o3-YUQ"/>
                             <constraint firstAttribute="bottom" secondItem="bPJ-G0-xFM" secondAttribute="bottom" id="X8y-rX-XLL"/>
                             <constraint firstItem="bPJ-G0-xFM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bYV-yh-N4p"/>
-                            <constraint firstItem="jOy-TX-kRz" firstAttribute="bottom" secondItem="bPJ-G0-xFM" secondAttribute="bottom" id="bpk-A4-duu"/>
+                            <constraint firstAttribute="bottom" secondItem="giD-0o-dSF" secondAttribute="bottom" id="ui9-yw-PD2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8RL-jj-YoR" secondAttribute="trailing" constant="16" id="yNb-XU-LYc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -76,6 +98,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="sortOverlayView" destination="giD-0o-dSF" id="Jld-9W-UU7"/>
                         <outlet property="sortPickerView" destination="jOy-TX-kRz" id="Qgx-nT-IFt"/>
                         <outlet property="tableView" destination="bPJ-G0-xFM" id="9Eh-ca-M6l"/>
                     </connections>

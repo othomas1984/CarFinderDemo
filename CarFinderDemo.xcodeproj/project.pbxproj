@@ -84,6 +84,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		331F691B21B8981500499ED8 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */,
+				338BCC05216D9509007A4906 /* Main.storyboard */,
+				338BCC31216DB749007A4906 /* SearchViewController.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
 		338BCBF5216D9509007A4906 = {
 			isa = PBXGroup;
 			children = (
@@ -108,13 +118,11 @@
 			isa = PBXGroup;
 			children = (
 				338BCC01216D9509007A4906 /* AppDelegate.swift */,
-				338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */,
+				331F691B21B8981500499ED8 /* Features */,
 				338BCC2F216DA338007A4906 /* Models.swift */,
 				33A0FD8321A205A7000AEB21 /* KeyService.swift */,
 				33A0FD8721A21B21000AEB21 /* LocationService.swift */,
 				33A0FD8521A206E2000AEB21 /* Keys.plist */,
-				338BCC05216D9509007A4906 /* Main.storyboard */,
-				338BCC31216DB749007A4906 /* SearchViewController.swift */,
 				338BCC08216D950A007A4906 /* Assets.xcassets */,
 				338BCC0A216D950A007A4906 /* LaunchScreen.storyboard */,
 				338BCC0D216D950A007A4906 /* Info.plist */,
