@@ -10,27 +10,28 @@ import UIKit
 import CoreLocation
 
 class SearchViewController: UIViewController {
-  var locationService: LocationService!
-  
-  lazy var formatter: DateFormatter = {
+  #warning("Move all this state to a view model and bind with Rx")
+  private var locationService: LocationService!
+  private var debounceTimer: Timer?
+
   private lazy var formatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .medium
     return formatter
   }()
-  var startDate: Date = Date() {
+  private var startDate: Date = Date() {
     didSet {
       startDateButton.setTitle(formatter.string(from: startDate), for: .normal)
       endDatePicker.minimumDate = startDate.addingTimeInterval(24*60*60)
       endDate = max(startDate.addingTimeInterval(24*60*60), endDate)
     }
   }
-  var endDate: Date = Date() {
+  private var endDate: Date = Date() {
     didSet {
       endDateButton.setTitle(formatter.string(from: endDate), for: .normal)
     }
   }
-  var location: CLPlacemark?
+  private var location: CLPlacemark?
   
   @IBOutlet weak var addressTextField: UITextField!
   @IBOutlet weak var startDateButton: UIButton!

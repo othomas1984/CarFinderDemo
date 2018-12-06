@@ -29,7 +29,7 @@ class CarSearchResultsViewController: UIViewController {
     }
   }
   
-  func updateUI() {
+  private func updateUI() {
     title = viewModel.title
     tableView.reloadData()
   }
