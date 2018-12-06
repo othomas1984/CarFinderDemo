@@ -79,6 +79,18 @@ class NetworkService {
     task.resume()
   }
   
+  func imageData(for url: URL, completion: @escaping (Data?, Error?) -> Void) {
+    let request = URLRequest(url: url)
+    session.dataTask(with: request) { data, response, error in
+      if let error = error {
+        completion(nil, error)
+        return
+      }
+      guard let data = data else { completion(nil, NetworkError.noData); return }
+      completion(data, nil)
+      }.resume()
+  }
+  
   private func buildRequest(fromURL url: String, parameters: [String: String]?) throws -> URLRequest {
     guard var urlComponents = URLComponents(string: url) else {
       throw NetworkError.urlError
