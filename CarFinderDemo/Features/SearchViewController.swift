@@ -13,6 +13,7 @@ class SearchViewController: UIViewController {
   var locationService: LocationService!
   
   lazy var formatter: DateFormatter = {
+  private lazy var formatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .medium
     return formatter
@@ -112,12 +113,15 @@ extension SearchViewController: UITextFieldDelegate {
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     if let oldText = textField.text {
       let newText = (oldText as NSString).replacingCharacters(in: range, with: string)
-      locationService.location(forAddress: newText) { (place, error) in
-        if let error = error {
-          print(error.localizedDescription)
-          #warning("Deal with error")
-        } else if let place = place {
-          self.location = place
+      debounceTimer?.invalidate()
+      debounceTimer = Timer.scheduledTimer(withTimeInterval: 0.25 , repeats: false) { timer in
+        self.locationService.location(forAddress: newText) { (place, error) in
+          if let error = error {
+            print(error.localizedDescription)
+            #warning("Deal with error")
+          } else if let place = place {
+            self.location = place
+          }
         }
       }
     }
