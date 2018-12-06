@@ -59,7 +59,7 @@ extension CarSearchResultsViewController: UITableViewDataSource {
     let milesString = " (\(round(miles * 100) / 100)m)"
     cell.textLabel?.text = car.providerName + ": " + car.category + milesString
     if let estimate = car.estimatedTotal {
-      cell.detailTextLabel?.text = estimate.amount + " " + estimate.currency
+      cell.detailTextLabel?.text = estimate.currencyString
     } else {
       cell.detailTextLabel?.text = "Tap for Price"
     }

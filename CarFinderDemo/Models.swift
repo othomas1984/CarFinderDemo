@@ -49,6 +49,19 @@ struct Car: Decodable {
   var image: Image?  
 }
 
+extension Cost {
+  static var formatter: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    return formatter
+  }()
+  
+  var currencyString: String {
+    guard let amountDouble = Double.init(amount ?? "0") else { return "Error" }
+    return Cost.formatter.string(from: NSNumber.init(value: amountDouble))!
+  }
+}
+
 struct CarInfo {
   var rates: [Rate]
   var acrissCode: String
