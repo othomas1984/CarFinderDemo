@@ -30,7 +30,6 @@ class CarViewModel {
   }
   
   var cost: String {
-    guard let amountDouble = Double.init(car.estimatedTotal?.amount ?? "0") else { return "Error" }
-    return CarViewModel.formatter.string(from: NSNumber.init(value: amountDouble))!
+    return car.estimatedTotal?.currencyString ?? "Error"
   }
 }

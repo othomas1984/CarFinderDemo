@@ -11,6 +11,7 @@ import CoreLocation
 
 class SearchViewController: UIViewController {
   #warning("Move all this state to a view model and bind with Rx")
+  #warning("Transition to better dependancy injection at init to avoid implicit unwraps")
   private var locationService: LocationService!
   private var debounceTimer: Timer?
 

@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 
 class CarSearchResultsViewController: UIViewController {
+  #warning("Transition to better dependancy injection at init to avoid implicit unwraps")
   var viewModel: CarSearchResultsViewModel!
 
   @IBOutlet weak var tableView: UITableView!

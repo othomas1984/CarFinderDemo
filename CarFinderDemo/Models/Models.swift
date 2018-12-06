@@ -11,9 +11,9 @@ import Foundation
 struct CarSearchResults: Decodable {
   var results: [CarSearchResult]
   var cars: [CarInfo] {
-    return results.flatMap { result in
-      result.cars.map { apiCar in
-        CarInfo(rates: apiCar.rates, acrissCode: apiCar.vehicleInfo.acrissCode, transmission: apiCar.vehicleInfo.transmission, fuel: apiCar.vehicleInfo.fuel, airConditioning: apiCar.vehicleInfo.airConditioning, category: apiCar.vehicleInfo.category, type: apiCar.vehicleInfo.type, providerName: result.provider.companyName, estimatedTotal: apiCar.estimatedTotal, image: apiCar.image, address: result.address, location: result.location)
+    return results.flatMap { company in
+      company.cars.map { car in
+        CarInfo(rates: car.rates, acrissCode: car.vehicleInfo.acrissCode, transmission: car.vehicleInfo.transmission, fuel: car.vehicleInfo.fuel, airConditioning: car.vehicleInfo.airConditioning, category: car.vehicleInfo.category, type: car.vehicleInfo.type, providerName: company.provider.companyName, estimatedTotal: car.estimatedTotal, image: car.image, address: company.address, location: company.location)
       }
     }
   }
@@ -49,19 +49,6 @@ struct Car: Decodable {
   var image: Image?  
 }
 
-extension Cost {
-  static var formatter: NumberFormatter = {
-    let formatter = NumberFormatter()
-    formatter.numberStyle = .currency
-    return formatter
-  }()
-  
-  var currencyString: String {
-    guard let amountDouble = Double.init(amount ?? "0") else { return "Error" }
-    return Cost.formatter.string(from: NSNumber.init(value: amountDouble))!
-  }
-}
-
 struct CarInfo {
   var rates: [Rate]
   var acrissCode: String
@@ -89,6 +76,20 @@ struct VehicleInfo: Decodable {
 struct Rate: Decodable {
   var type: String
   var price: Cost
+}
+
+extension Cost {
+  static var formatter: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    return formatter
+  }()
+  
+  var currencyString: String {
+    guard let amountDouble = Double(amount),
+      let amount = CarViewModel.formatter.string(from: NSNumber(value: amountDouble)) else { return "Error" }
+    return amount
+  }
 }
 
 struct Cost: Decodable {

@@ -98,11 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				338BCC05216D9509007A4906 /* Main.storyboard */,
-				338BCC31216DB749007A4906 /* SearchViewController.swift */,
-				338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */,
-				331F692421B8B8DF00499ED8 /* CarSearchResultsViewModel.swift */,
-				331F692621B8C42E00499ED8 /* CarViewController.swift */,
-				331F692821B8C4A800499ED8 /* CarViewModel.swift */,
+				331F692A21B9AF7100499ED8 /* Search */,
+				331F692B21B9AF7E00499ED8 /* Search Results */,
+				331F692C21B9AF8C00499ED8 /* Car */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -123,6 +121,51 @@
 				331F692221B8A66500499ED8 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		331F692A21B9AF7100499ED8 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				338BCC31216DB749007A4906 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		331F692B21B9AF7E00499ED8 /* Search Results */ = {
+			isa = PBXGroup;
+			children = (
+				338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */,
+				331F692421B8B8DF00499ED8 /* CarSearchResultsViewModel.swift */,
+			);
+			path = "Search Results";
+			sourceTree = "<group>";
+		};
+		331F692C21B9AF8C00499ED8 /* Car */ = {
+			isa = PBXGroup;
+			children = (
+				331F692621B8C42E00499ED8 /* CarViewController.swift */,
+				331F692821B8C4A800499ED8 /* CarViewModel.swift */,
+			);
+			path = Car;
+			sourceTree = "<group>";
+		};
+		331F692D21B9AF9E00499ED8 /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				338BCC01216D9509007A4906 /* AppDelegate.swift */,
+				338BCC08216D950A007A4906 /* Assets.xcassets */,
+				338BCC0A216D950A007A4906 /* LaunchScreen.storyboard */,
+				338BCC0D216D950A007A4906 /* Info.plist */,
+			);
+			name = Extras;
+			sourceTree = "<group>";
+		};
+		331F692E21B9AFE700499ED8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				338BCC2F216DA338007A4906 /* Models.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		338BCBF5216D9509007A4906 = {
@@ -148,15 +191,12 @@
 		338BCC00216D9509007A4906 /* CarFinderDemo */ = {
 			isa = PBXGroup;
 			children = (
-				331F692121B8A65700499ED8 /* Extensions */,
-				338BCC01216D9509007A4906 /* AppDelegate.swift */,
-				331F691B21B8981500499ED8 /* Features */,
-				338BCC2F216DA338007A4906 /* Models.swift */,
-				331F691E21B89FE900499ED8 /* Services */,
 				33A0FD8521A206E2000AEB21 /* Keys.plist */,
-				338BCC08216D950A007A4906 /* Assets.xcassets */,
-				338BCC0A216D950A007A4906 /* LaunchScreen.storyboard */,
-				338BCC0D216D950A007A4906 /* Info.plist */,
+				331F692121B8A65700499ED8 /* Extensions */,
+				331F691B21B8981500499ED8 /* Features */,
+				331F692E21B9AFE700499ED8 /* Models */,
+				331F691E21B89FE900499ED8 /* Services */,
+				331F692D21B9AF9E00499ED8 /* Extras */,
 			);
 			path = CarFinderDemo;
 			sourceTree = "<group>";
