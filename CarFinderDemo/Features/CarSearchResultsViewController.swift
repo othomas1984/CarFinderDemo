@@ -16,6 +16,7 @@ class CarSearchResultsViewController: UIViewController {
   
   var keyService: KeyService!
   var locationService: LocationService!
+  var networkService: NetworkService!
   var startDate: Date!
   var endDate: Date!
   var location: CLLocation!
@@ -43,84 +44,31 @@ class CarSearchResultsViewController: UIViewController {
     sortPickerView.delegate = self
     keyService = KeyService()
     locationService = LocationService()
-    guard var urlComponents = URLComponents(string: "https://api.sandbox.amadeus.com/v1.2/cars/search-circle") else {
-      print("URL Error")
-      #warning("Handle error")
-      return
-    }
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    let start = formatter.string(from: startDate)
-    let end = formatter.string(from: endDate)
-    let apiKey: String
-    do {
-      apiKey = try keyService.key(forName: "amadeusAPIKey")
-    } catch {
-      apiKey = "Unknown Key"
-      print(error.localizedDescription)
-    }
-    urlComponents.queryItems = [
-      URLQueryItem(name: "apikey", value: apiKey),
-      URLQueryItem(name: "latitude", value: String(describing: location.coordinate.latitude)),
-      URLQueryItem(name: "longitude", value: String(describing: location.coordinate.longitude)),
-      URLQueryItem(name: "radius", value: "40"),
-      URLQueryItem(name: "pick_up", value: start),
-      URLQueryItem(name: "drop_off", value: end),
-    ]
-    guard let url = urlComponents.url else {
-      print("Error getting url from components")
-      #warning("Handle error")
-      return
-    }
-    let request = URLRequest(url: url)
-    let session = URLSession(configuration: .default)
-    let task = session.dataTask(with: request) { (data, response, error) in
-      guard let statusCode = (response as? HTTPURLResponse)?.statusCode else { return }
-      guard statusCode >= 200, statusCode < 300 else {
-        print("Network Error: HTTP Code \(statusCode)")
-        if let data = data,
-          let error = try? JSONSerialization.jsonObject(with: data, options: []),
-          let errorDict = error as? [String: Any],
-          let message = errorDict["message"] as? String {
-          print(message)
-        }
-        #warning("Handle error")
-        DispatchQueue.main.async {
-          self.title = "0 Results"
-        }
+    networkService = NetworkService(keyService: keyService)
+  
+    networkService.getCarResults(startDate: startDate, endDate: endDate, lat: location.coordinate.latitude, long: location.coordinate.longitude) { (results, error) in
+      if let error = error {
+        self.title = "Error: 0 Results"
+        #warning("Do something better with errors here")
+        self.displayGenericAlert(title: "Network Error", message: error.localizedDescription)
         return
       }
-      guard let data = data, error == nil else {
-        print("Error fetching data: \(error?.localizedDescription ?? "Unknown Error")")
-        #warning("Handle error")
-        DispatchQueue.main.async {
-          self.title = "0 Results"
-        }
+      guard let results = results else {
+        #warning("Use a Result type here so that results are always populated if error is not")
+        self.displayGenericAlert(title: "Unknown Error", message: "We should never get here if error above is nil")
         return
       }
-      let decoder = JSONDecoder()
-      decoder.keyDecodingStrategy = .convertFromSnakeCase
-      guard let result = try? decoder.decode(CarSearchResults.self, from: data) else {
-        print("Error decoding search results")
-        #warning("Handle error")
-        DispatchQueue.main.async {
-          self.title = "0 Results"
-        }
-        return
-      }
-      self.cars = result.cars
+      self.cars = results.cars
       self.sortCars(by: self.sortBy, ascending: self.sortAscending)
-      DispatchQueue.main.async {
-        self.title = "\(self.cars.count) Results"
-        self.tableView.reloadData()
-      }
+      self.title = "\(self.cars.count) Results"
+      self.tableView.reloadData()
     }
-    task.resume()
   }
   
   @IBAction func sortButtonTapped(_ sender: Any) {
     sortOverlayView.isHidden = !sortOverlayView.isHidden
   }
+  
   func sortCars(by sortType: CarSort, ascending: Bool) {
     cars = cars
       .sorted {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		331F692021B8A00600499ED8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331F691F21B8A00600499ED8 /* NetworkService.swift */; };
+		331F692321B8A66500499ED8 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331F692221B8A66500499ED8 /* UIViewController+Extensions.swift */; };
 		338BCC02216D9509007A4906 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC01216D9509007A4906 /* AppDelegate.swift */; };
 		338BCC04216D9509007A4906 /* CarSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */; };
 		338BCC07216D9509007A4906 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338BCC05216D9509007A4906 /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		331F691F21B8A00600499ED8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		331F692221B8A66500499ED8 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		338BCBFE216D9509007A4906 /* CarFinderDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarFinderDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338BCC01216D9509007A4906 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSearchResultsViewController.swift; sourceTree = "<group>"; };
@@ -98,9 +102,18 @@
 			isa = PBXGroup;
 			children = (
 				33A0FD8321A205A7000AEB21 /* KeyService.swift */,
+				331F691F21B8A00600499ED8 /* NetworkService.swift */,
 				33A0FD8721A21B21000AEB21 /* LocationService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		331F692121B8A65700499ED8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				331F692221B8A66500499ED8 /* UIViewController+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		338BCBF5216D9509007A4906 = {
@@ -126,6 +139,7 @@
 		338BCC00216D9509007A4906 /* CarFinderDemo */ = {
 			isa = PBXGroup;
 			children = (
+				331F692121B8A65700499ED8 /* Extensions */,
 				338BCC01216D9509007A4906 /* AppDelegate.swift */,
 				331F691B21B8981500499ED8 /* Features */,
 				338BCC2F216DA338007A4906 /* Models.swift */,
@@ -292,8 +306,10 @@
 				338BCC04216D9509007A4906 /* CarSearchResultsViewController.swift in Sources */,
 				338BCC32216DB749007A4906 /* SearchViewController.swift in Sources */,
 				338BCC02216D9509007A4906 /* AppDelegate.swift in Sources */,
+				331F692321B8A66500499ED8 /* UIViewController+Extensions.swift in Sources */,
 				33A0FD8821A21B21000AEB21 /* LocationService.swift in Sources */,
 				33A0FD8421A205A7000AEB21 /* KeyService.swift in Sources */,
+				331F692021B8A00600499ED8 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

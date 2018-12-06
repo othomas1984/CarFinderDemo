@@ -10,14 +10,14 @@ import Foundation
 
 class KeyService {
   enum KeyError: Error {
-    case keyError
+    case apiKeyError
   }
   
   func key(forName name: String) throws -> String  {
     guard let filePath = Bundle.main.path(forResource: "Keys", ofType: "plist"),
       let plist = NSDictionary(contentsOfFile: filePath) as? [String: Any],
       let key = plist[name] as? String else {
-        throw KeyError.keyError
+        throw KeyError.apiKeyError
     }
     return key
   }
