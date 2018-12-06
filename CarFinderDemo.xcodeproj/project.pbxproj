@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		331F692021B8A00600499ED8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331F691F21B8A00600499ED8 /* NetworkService.swift */; };
 		331F692321B8A66500499ED8 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331F692221B8A66500499ED8 /* UIViewController+Extensions.swift */; };
+		331F692521B8B8DF00499ED8 /* CarSearchResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331F692421B8B8DF00499ED8 /* CarSearchResultsViewModel.swift */; };
 		338BCC02216D9509007A4906 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC01216D9509007A4906 /* AppDelegate.swift */; };
 		338BCC04216D9509007A4906 /* CarSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */; };
 		338BCC07216D9509007A4906 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 338BCC05216D9509007A4906 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		331F691F21B8A00600499ED8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		331F692221B8A66500499ED8 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		331F692421B8B8DF00499ED8 /* CarSearchResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSearchResultsViewModel.swift; sourceTree = "<group>"; };
 		338BCBFE216D9509007A4906 /* CarFinderDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarFinderDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338BCC01216D9509007A4906 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarSearchResultsViewController.swift; sourceTree = "<group>"; };
@@ -91,9 +93,10 @@
 		331F691B21B8981500499ED8 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */,
 				338BCC05216D9509007A4906 /* Main.storyboard */,
 				338BCC31216DB749007A4906 /* SearchViewController.swift */,
+				338BCC03216D9509007A4906 /* CarSearchResultsViewController.swift */,
+				331F692421B8B8DF00499ED8 /* CarSearchResultsViewModel.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				331F692321B8A66500499ED8 /* UIViewController+Extensions.swift in Sources */,
 				33A0FD8821A21B21000AEB21 /* LocationService.swift in Sources */,
 				33A0FD8421A205A7000AEB21 /* KeyService.swift in Sources */,
+				331F692521B8B8DF00499ED8 /* CarSearchResultsViewModel.swift in Sources */,
 				331F692021B8A00600499ED8 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -77,12 +77,9 @@ class SearchViewController: UIViewController {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard let resultsVC = segue.destination as? CarSearchResultsViewController else { return }
-    resultsVC.startDate = startDate
-    resultsVC.endDate = endDate
-    if let location = location {
-      resultsVC.location = location.location
-    }
+    guard let resultsVC = segue.destination as? CarSearchResultsViewController,
+      let location = location?.location else { return }
+    resultsVC.viewModel = CarSearchResultsViewModel(startDate: startDate, endDate: endDate, location: location, NetworkService(keyService: KeyService()), LocationService())
   }
 
   private func animate(picker: UIDatePicker, hide: Bool) {
