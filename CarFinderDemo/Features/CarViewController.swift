@@ -21,10 +21,6 @@ class CarViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
     providerLabel.text = viewModel.car.providerName
     typeLabel.text = viewModel.car.type
     transmissionLabel.text = viewModel.car.transmission
