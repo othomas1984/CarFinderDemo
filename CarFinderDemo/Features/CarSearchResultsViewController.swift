@@ -37,6 +37,14 @@ class CarSearchResultsViewController: UIViewController {
   @IBAction func sortButtonTapped(_ sender: Any) {
     sortOverlayView.isHidden = !sortOverlayView.isHidden
   }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let destination = segue.destination as? CarViewController,
+      let indexPath = tableView.indexPathForSelectedRow else { return }
+    let model = CarViewModel(car: viewModel.cars[indexPath.row])
+    destination.viewModel = model
+    tableView.cellForRow(at: indexPath)?.isSelected = false
+  }
 }
 
 extension CarSearchResultsViewController: UITableViewDataSource {
