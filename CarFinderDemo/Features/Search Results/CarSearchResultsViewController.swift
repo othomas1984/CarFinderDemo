@@ -24,7 +24,7 @@ class CarSearchResultsViewController: UIViewController {
     sortPickerView.delegate = self
     viewModel.refreshCars { (error) in
       if let error = error {
-        self.displayGenericAlert(title: "Network Error", message: error.localizedDescription)
+        self.displayGenericAlert(title: "Network Error", message: String(describing: error))
       }
       self.updateUI()
     }
